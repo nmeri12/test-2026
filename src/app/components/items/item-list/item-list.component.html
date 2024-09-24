@@ -1,0 +1,19 @@
+<h1>Items List</h1>
+
+<div *ngIf="loading;else displayItems">
+  <p>Loading...</p>
+</div>
+
+
+<ng-template #displayItems>
+  <ng-container *ngIf="items.length; else noItems">
+    <div *ngFor="let item of items">
+      <app-list-extend *ngIf="item" [item]="item" (btnClicked)="onBtnClicked($event)"></app-list-extend>
+    </div>
+  </ng-container>
+
+  <ng-template #noItems>
+    <p>No items available.</p>
+  </ng-template>
+
+</ng-template>

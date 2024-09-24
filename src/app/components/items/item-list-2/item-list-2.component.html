@@ -1,0 +1,17 @@
+<h1>Items List</h1>
+
+<ng-container *ngIf="data$ | async as items; else loading">
+  <div *ngIf="items.products; else noItems"> <!-- Check if the products array is not empty -->
+    <div *ngFor="let item of items.products">
+      <app-list-extend [item]="item" (btnClicked)="onBtnClicked($event)"></app-list-extend>
+    </div>
+  </div>
+  <ng-template #noItems>
+    <p>No items available.</p>
+  </ng-template>
+</ng-container>
+
+<ng-template #loading>
+  <p>Loading...</p>
+</ng-template>
+

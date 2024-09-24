@@ -1,0 +1,9 @@
+<div class="border border-2 border-primary mt-3 p-2">
+  <p>ID: {{item.id}}</p>
+  <p>Price: {{item.price}}</p>
+  <p>Brand: {{item.brand}}</p>
+  <div class="text-end">
+    <button type="button" class="btn btn-primary" [routerLink]="['/items/edit', item.id]">More
+      info <i class="bi bi-arrow-right me-3"></i></button>
+  </div>
+</div>
