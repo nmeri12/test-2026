@@ -1,24 +1,32 @@
 <div class="container">
   <h1>Tariff List</h1>
 
-  <div class="row">
-    <div class="form-group col-md-6 bg-danger p-3">
-      <label for="sortSearch">Search by name...</label>
-      <input id="sortSearch" type="text" class="form-control" placeholder="Search by name..." aria-label="Search by name" aria-describedby="basic-addon2">
+  <div class="row bg-light">
+    <div class="form-group col-md-6 p-4">
+      <label for="sortSearch">Search by name or ID</label>
+      <input
+        id="sortSearch"
+        type="text"
+        class="form-control"
+        placeholder="Search by name or ID..."
+        aria-label="Search by name"
+        aria-describedby="basic-addon2"
+        [(ngModel)]="searchQuery"
+        (ngModelChange)="filterTariffs()"
+      >
     </div>
-      <!-- Custom sorting by field and order -->
-      <div class="form-group col-md-6 bg-danger p-3">
-        <label for="sortSelect">Sort by:</label>
-        <select id="sortSelect" class="form-control" (change)="onSortChange($event)">
-          <option *ngFor="let option of SortOptions" value="{{option.value}}">{{option.label}}</option>
-        </select>
-      </div>
-      <!-- end of Sort Dropdown  -->
+    <!-- Custom sorting by field and order -->
+    <div class="form-group col-md-6 p-4">
+      <label for="sortSelect">Sort by:</label>
+      <select id="sortSelect" class="form-control" (change)="onSortChange($event)">
+        <option *ngFor="let option of SortOptions" value="{{option.value}}">{{option.label}}</option>
+      </select>
+    </div>
+    <!-- end of Sort Dropdown  -->
   </div>
 
-
   <div class="row pt-5">
-    <div class="col-md-12" *ngFor="let tariff of filteredTariffs| sortArray:sortField:sortOrder">
+    <div class="col-md-12" *ngFor="let tariff of filteredTariffs | sortArray:sortField:sortOrder">
       <div class="card mb-3">
         <div class="card-body">
           <h5 class="card-title">{{ tariff.name }}</h5>
@@ -32,5 +40,4 @@
       </div>
     </div>
   </div>
-
 </div>
