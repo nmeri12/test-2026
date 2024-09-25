@@ -1,0 +1,28 @@
+{
+  "tariffs": [
+    {
+      "id": 1,
+      "name": "Basic",
+      "downloadSpeed": 50,
+      "uploadSpeed": 10,
+      "price": 110.45,
+      "benefits": []
+    },
+    {
+      "id": 2,
+      "name": "Standard",
+      "downloadSpeed": 100,
+      "uploadSpeed": 20,
+      "price": 35.25,
+      "benefits": ["Tariff benefit 1", "Tariff benefit 2", "Tariff benefit 3"]
+    },
+    {
+      "id": 3,
+      "name": "Premium",
+      "downloadSpeed": 200,
+      "uploadSpeed": 50,
+      "price": 50.99,
+      "benefits": ["Tariff benefit 1", "Tariff benefit 3"]
+    }
+  ]
+}
