@@ -55,4 +55,13 @@ export class TaskListComponent implements OnInit {
       tariff.id.toString().includes(this.searchQuery)
     );
   }
+
+
+  /**
+   * Reset the filtered tariffs to the original tariffs list and rest search query
+   */
+  onReset() {
+    this.searchQuery = '';
+    this.filteredTariffs = this.tariffs;
+  }
 }

@@ -5,6 +5,13 @@ import {FormsModule} from "@angular/forms";
 import {RouterModule, Routes} from "@angular/router";
 import { SortArrayPipe } from './sort-array.pipe';
 import { SortDropdownMenuComponent } from './task-list/sort-dropdown-menu/sort-dropdown-menu.component';
+import {
+  NgbAccordionBody,
+  NgbAccordionButton,
+  NgbAccordionCollapse, NgbAccordionDirective,
+  NgbAccordionHeader,
+  NgbAccordionItem
+} from "@ng-bootstrap/ng-bootstrap";
 
 const routes: Routes = [
   {path:'',component:TaskListComponent}
@@ -19,7 +26,13 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    FormsModule
+    FormsModule,
+    NgbAccordionItem,
+    NgbAccordionHeader,
+    NgbAccordionButton,
+    NgbAccordionCollapse,
+    NgbAccordionBody,
+    NgbAccordionDirective
   ]
 })
 export class TaskModule { }
