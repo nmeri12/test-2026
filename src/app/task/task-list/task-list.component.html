@@ -1,20 +1,22 @@
 <div class="container">
   <h1>Tariff List</h1>
-  <!-- start of Dropdown for custom sorting by field and order -->
-  <div class="form-group">
-    <label for="sortSelect">Sort by:</label>
-    <select id="sortSelect" class="form-control" (change)="onSortChange($event)">
-      <option value="price-asc">Default (Price Ascending)</option>
-      <option value="price-desc">Price Descending</option>
-      <option value="name-asc">Name Ascending</option>
-      <option value="name-desc">Name Descending</option>
-      <option value="downloadSpeed-asc">Download Speed Ascending</option>
-      <option value="downloadSpeed-desc">Download Speed Descending</option>
-      <option value="uploadSpeed-asc">Upload Speed Ascending</option>
-      <option value="uploadSpeed-desc">Upload Speed Descending</option>
-    </select>
+
+  <div class="row">
+    <div class="form-group col-md-6 bg-danger p-3">
+      <label for="sortSearch">Search by name...</label>
+      <input id="sortSearch" type="text" class="form-control" placeholder="Search by name..." aria-label="Search by name" aria-describedby="basic-addon2">
+    </div>
+      <!-- Custom sorting by field and order -->
+      <div class="form-group col-md-6 bg-danger p-3">
+        <label for="sortSelect">Sort by:</label>
+        <select id="sortSelect" class="form-control" (change)="onSortChange($event)">
+          <option *ngFor="let option of SortOptions" value="{{option.value}}">{{option.label}}</option>
+        </select>
+      </div>
+      <!-- end of Sort Dropdown  -->
   </div>
-  <!-- end of Sort Dropdown  -->
+
+
   <div class="row pt-5">
     <div class="col-md-12" *ngFor="let tariff of filteredTariffs| sortArray:sortField:sortOrder">
       <div class="card mb-3">
@@ -30,4 +32,5 @@
       </div>
     </div>
   </div>
+
 </div>

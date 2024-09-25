@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {TaskService} from "../task.service";
 import {Tariff} from "../../models/task.model";
+import {sortingOptions, SortOption} from "../../models/sorting-options";
 
 @Component({
   selector: 'app-task-list',
@@ -12,7 +13,8 @@ export class TaskListComponent implements OnInit {
   tariffs: Tariff[] = []; // the original data array
   filteredTariffs: Tariff[] = []; // filtered array
   sortOrder: 'asc' | 'desc' = 'asc'; // default sort order
-  sortField:  keyof Omit<Tariff, 'benefits'> = 'price'; // default sort field
+  sortField: keyof Omit<Tariff, 'benefits'> = 'price'; // default sort field
+  SortOptions: SortOption[] = sortingOptions;
 
   constructor(private tariffService: TaskService) {
   }
@@ -40,7 +42,7 @@ export class TaskListComponent implements OnInit {
    */
   onSortChange(event: Event) {
     const [field, order] = (event.target as HTMLSelectElement).value?.split('-');  // Split value into field and order
-    this.sortField = field  as keyof Omit<Tariff, 'benefits'>
+    this.sortField = field as keyof Omit<Tariff, 'benefits'>
     this.sortOrder = order as 'asc' | 'desc';
   }
 }
