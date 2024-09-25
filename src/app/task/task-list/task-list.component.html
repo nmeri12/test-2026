@@ -1,7 +1,8 @@
-<div class="container">
-  <h1>Tariff List</h1>
 
-  <div ngbAccordion>
+  <div class="text-center pb-2"><h1>Tariff List</h1></div>
+
+  <!-- Sort and filter section -->
+  <div ngbAccordion class="pb-4">
     <div ngbAccordionItem [collapsed]="false">
       <h2 ngbAccordionHeader>
         <button ngbAccordionButton>Custom Sort & Filter</button>
@@ -23,14 +24,12 @@
                   (ngModelChange)="filterTariffs()"
                 >
               </div>
-              <!-- Custom sorting by field and order -->
               <div class="form-group col-md-6">
                 <label for="sortSelect">Sort by:</label>
                 <select id="sortSelect" class="form-control" (change)="onSortChange($event)">
                   <option *ngFor="let option of SortOptions" value="{{option.value}}">{{option.label}}</option>
                 </select>
               </div>
-              <!-- end of Sort Dropdown  -->
             </div>
           </ng-template>
         </div>
@@ -38,28 +37,40 @@
     </div>
   </div>
 
-  <div class="row pt-5">
-    <ng-container *ngIf="filteredTariffs.length;else empty">
-      <div class="col-md-12" *ngFor="let tariff of filteredTariffs | sortArray:sortField:sortOrder">
-        <div class="card mb-3">
-          <div class="card-body">
-            <h5 class="card-title">{{ tariff.name }}</h5>
-            <p class="card-text">Download: {{ tariff.downloadSpeed }} Mbps</p>
-            <p class="card-text">Upload: {{ tariff.uploadSpeed }} Mbps</p>
-<!--            <p class="card-text">Price: {{ tariff.price | currency:'EUR' }}</p> -->
-            <p class="card-text">Price: {{ tariff.price }} <span>€</span></p>
-            <ul *ngFor="let benefit of tariff.benefits">
-              <li>{{benefit}}</li>
-            </ul>
-          </div>
-        </div>
+  <!-- Loading spinner -->
+  <ng-container *ngIf="loading; else content">
+    <div class="text-center pt-5">
+      <div class="spinner-border" role="status">
+        <span class="sr-only"></span>
       </div>
-    </ng-container>
-    <ng-template #empty>
-      <div class="text-center">
-        <p>No results found!</p>
-        <button (click)="onReset()" type="button" class="btn btn-danger">Reset Filter</button>
-      </div>
-    </ng-template>
-  </div>
-</div>
+    </div>
+  </ng-container>
+
+  <!-- Result list -->
+  <ng-template #content>
+ <div class="border border-dark border-3">
+   <div class="p-3">
+     <ng-container *ngIf="errorMessage; else results">
+       <div class="text-center">
+         <p>{{ errorMessage }}</p>
+       </div>
+     </ng-container>
+     <ng-template #results>
+
+       <ng-container *ngIf="filteredTariffs.length; else empty">
+         <div *ngFor="let tariff of filteredTariffs | sortArray:sortField:sortOrder">
+           <app-tariff-card [tariff]="tariff"></app-tariff-card>
+         </div>
+       </ng-container>
+       <ng-template #empty>
+         <div class="text-center">
+           <p>No results found!</p>
+           <button *ngIf="tariffs.length" (click)="onReset()" type="button" class="btn btn-danger">Reset Filter</button>
+         </div>
+       </ng-template>
+     </ng-template>
+
+   </div>
+ </div>
+  </ng-template>
+

@@ -8,17 +8,17 @@ import {catchError, Observable, throwError} from "rxjs";
 })
 export class ItemsService {
 
-  _api: string = 'https://dummyjson.com';
+  private apiurl: string = 'https://dummyjson.com';
 
   constructor(private _http: HttpClient) {
   }
 
   getItems(): Observable<Item[]> {
-    return this._http.get<Item[]>(`${this._api}/products`)
+    return this._http.get<Item[]>(`${this.apiurl}/products`)
   }
 
   getItems2(): Observable<Item[]> {
-    return this._http.get<Item[]>(`${this._api}/products`).pipe(
+    return this._http.get<Item[]>(`${this.apiurl}/products`).pipe(
       catchError(error => {
         console.error('An error occurred:', error);
         return throwError(() => new Error('Something went wrong; please try again later.'));
@@ -27,7 +27,7 @@ export class ItemsService {
   }
 
   getItemById(id: number) {
-    return this._http.get<Item>(`${this._api}/products/${id}`).pipe(
+    return this._http.get<Item>(`${this.apiurl}/products/${id}`).pipe(
       catchError(this.handleError)
     )
   }
@@ -38,15 +38,15 @@ export class ItemsService {
   }
 
   updateItemById(item: Item) {
-    return this._http.put<string>(`${this._api}/products/${item.id}`, item)
+    return this._http.put<string>(`${this.apiurl}/products/${item.id}`, item)
   }
 
   deleteItemById(id: number) {
-    return this._http.delete<string>(`${this._api}/products/${id}`)
+    return this._http.delete<string>(`${this.apiurl}/products/${id}`)
   }
 
   addItem(item: Item) {
-    return this._http.post<string>(`${this._api}/products`, item)
+    return this._http.post<string>(`${this.apiurl}/products`, item)
   }
 
 }

@@ -4,7 +4,6 @@ import { TaskListComponent } from './task-list/task-list.component';
 import {FormsModule} from "@angular/forms";
 import {RouterModule, Routes} from "@angular/router";
 import { SortArrayPipe } from './sort-array.pipe';
-import { SortDropdownMenuComponent } from './task-list/sort-dropdown-menu/sort-dropdown-menu.component';
 import {
   NgbAccordionBody,
   NgbAccordionButton,
@@ -12,6 +11,8 @@ import {
   NgbAccordionHeader,
   NgbAccordionItem
 } from "@ng-bootstrap/ng-bootstrap";
+import {TariffCardComponent} from "./task-list/tariff-card/tariff-card.component";
+import {SharedModule} from "../shared/shared.module";
 
 const routes: Routes = [
   {path:'',component:TaskListComponent}
@@ -21,7 +22,7 @@ const routes: Routes = [
   declarations: [
     TaskListComponent,
     SortArrayPipe,
-    SortDropdownMenuComponent
+    TariffCardComponent
   ],
   imports: [
     CommonModule,
@@ -32,7 +33,8 @@ const routes: Routes = [
     NgbAccordionButton,
     NgbAccordionCollapse,
     NgbAccordionBody,
-    NgbAccordionDirective
+    NgbAccordionDirective,
+    SharedModule
   ]
 })
 export class TaskModule { }
