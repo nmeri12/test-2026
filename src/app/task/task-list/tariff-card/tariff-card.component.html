@@ -63,14 +63,14 @@
 
   </div>
 
-  <!-- Display only in PC -->
+  <!-- Download/Upload PC -->
   <div class="col d-none d-lg-block custom-padding">
     <ul *ngFor="let benefit of tariff.benefits">
       <li>{{benefit}}</li>
     </ul>
   </div>
 
-  <!-- Download/Upload Div for PC & Tablet -->
+  <!-- Download/Upload for PC & Tablet -->
   <div class="col d-none d-none d-sm-block custom-padding text-end ">
     <h3> {{ tariff.price |euroCurrency}}</h3>
     <button class="details-btn pe-sm-3 ps-sm-3 pe-md-4 ps-md-4">
@@ -78,14 +78,12 @@
     </button>
   </div>
 
-  <!-- Download/Upload Div for Phone -->
+  <!-- Download/Upload Phone -->
   <div class="col d-block d-sm-none">
-    <div class="col">
       <div class="d-flex align-items-center">
         <h3 class="me-2"> {{ tariff.price |euroCurrency}}</h3>
         <button class="details-btn"><i class="bi bi-chevron-right"></i></button>
       </div>
-    </div>
   </div>
 
 </div>
