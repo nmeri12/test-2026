@@ -1,0 +1,91 @@
+<div class="row border border-dark border-3 m-2 result-card ">
+
+  <!-- ID Div for PC -->
+  <div class="col-auto d-none d-md-flex align-items-center custom-id mx-auto p-2 custom-id-padding">{{tariff.id}}.</div>
+
+  <!-- ID Div for tablet and phones -->
+  <div class="col-auto d-flex d-md-none p-2">{{tariff.id}}.</div>
+
+  <div class="col custom-padding">{{tariff.name}}</div>
+
+
+  <div class="col custom-padding">
+
+    <!-- phone -->
+    <div class="d-block d-sm-none">
+      <div><i class="bi bi-arrow-down"></i> <span>{{tariff.downloadSpeed}}</span></div>
+      <div><span>Mbit/s</span></div>
+    </div>
+
+    <!-- Tablet -->
+    <div class="d-none d-sm-block d-md-none">
+
+        <div class="d-flex align-items-center download-container pb-2">
+          <i class="bi bi-arrow-down label-border"></i>
+          <div class="label-with-border">
+            <span>{{tariff.downloadSpeed}}</span>
+            <span>Mbit/s</span>
+          </div>
+        </div>
+
+        <div class="d-flex align-items-center download-container">
+          <i class="bi bi-arrow-down label-border"></i>
+          <div class="label-with-border">
+            <span>{{tariff.uploadSpeed}}</span>
+            <span>Mbit/s</span>
+          </div>
+        </div>
+
+    </div>
+
+    <!-- PC -->
+    <div class="d-none d-md-block">
+
+        <label class="label-download">Download</label>
+        <div class="d-flex align-items-center download-container">
+          <i class="bi bi-arrow-down label-border"></i>
+          <div class="label-with-border">
+            <span class="download-speed">{{tariff.downloadSpeed}}</span>
+            <span class="download-unit">Mbit/s</span>
+          </div>
+        </div>
+
+        <label class="label-download">Upload</label>
+        <div class="d-flex align-items-center download-container">
+          <i class="bi bi-arrow-down label-border"></i>
+          <div class="label-with-border">
+            <span class="download-speed">{{tariff.uploadSpeed}}</span>
+            <span class="download-unit">Mbit/s</span>
+          </div>
+        </div>
+
+    </div>
+
+  </div>
+
+  <!-- Display only in PC -->
+  <div class="col d-none d-lg-block custom-padding">
+    <ul *ngFor="let benefit of tariff.benefits">
+      <li>{{benefit}}</li>
+    </ul>
+  </div>
+
+  <!-- Download/Upload Div for PC & Tablet -->
+  <div class="col d-none d-none d-sm-block custom-padding text-end ">
+    <h3> {{ tariff.price |euroCurrency}}</h3>
+    <button class="details-btn pe-sm-3 ps-sm-3 pe-md-4 ps-md-4">
+      <span class="d-none d-sm-inline pe-1">To Tariff</span> <i class="bi bi-chevron-right"></i>
+    </button>
+  </div>
+
+  <!-- Download/Upload Div for Phone -->
+  <div class="col d-block d-sm-none">
+    <div class="col">
+      <div class="d-flex align-items-center">
+        <h3 class="me-2"> {{ tariff.price |euroCurrency}}</h3>
+        <button class="details-btn"><i class="bi bi-chevron-right"></i></button>
+      </div>
+    </div>
+  </div>
+
+</div>
